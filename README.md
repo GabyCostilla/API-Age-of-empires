@@ -2,14 +2,13 @@
 
 Una API que te sumerge en el emocionante mundo de Age of Empires 2, proporcionando información y datos relacionados con el juego.
 
-
-
 ## Tabla de contenidos 📑
 
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Contribución](#contribución)
 - [Contacto](#contacto)
+- [Colaboración con el Instituto Técnico Renault Argentina](#colaboración-con-el-instituto-técnico-renault-argentina-🚗)
 
 ## Instalación 🚀
 
@@ -40,5 +39,5 @@ Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto conmigo 
 
 Este proyecto es parte de una colaboración con el Instituto Técnico Renault Argentina, donde se promueve el aprendizaje práctico y la innovación tecnológica.
 
- - Pagina Oficial: [InstitutoTecnicoRenault] (https://www.itr.edu.ar/)  
- - Instagram: [@instituto_tecnico_renault] (https://www.instagram.com/instituto_tecnico_renault/)
+- Pagina Oficial: [Instituto Técnico Renault](https://www.itr.edu.ar/)
+- Instagram: [@Instituto Técnico Renault](https://www.instagram.com/instituto_tecnico_renault/)
