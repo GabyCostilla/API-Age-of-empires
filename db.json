@@ -1,5 +1,5 @@
-[
-  {
+{ 
+  "civilization": [{
     "name": "Aztecs",
     "expansion": "The Conquerors",
     "army_type": "Infantry and Monk",
@@ -277,5 +277,5 @@
     "unique_tech": "Chatras;Paper Money",
     "team_bonus": "Have access to Imperial Skirmisher Upgrade",
     "civilization_bonus": "Reveals enemy positions at game start;Archery Range units have +10% HP in Feudal Age, +15% in Castle Age, and +20% in Imperial Age. Does not stack."
-  }
-]
+  }]
+ }
