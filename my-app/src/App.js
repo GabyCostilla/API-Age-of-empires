@@ -28,6 +28,7 @@ function App() {
             <li key={civilization.name}>
               <h2>{civilization.name}</h2>
               <p>Expansión: {civilization.expansion}</p>
+              <p>Ventajas: {civilization.civilization_bonus}</p>
             </li>
           ))}
         </ul>
