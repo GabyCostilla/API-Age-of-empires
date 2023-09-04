@@ -5,8 +5,7 @@ function App() {
   const [civilizations, setCivilizations] = useState([]);
 
   useEffect(() => {
-    
-    fetch('./civilizations.json') // Ruta relativa al archivo JSON en la carpeta public
+    fetch('/Age_of_empires_api/public/civilization.json') // Usamos la ruta relativa al archivo JSON en la carpeta 'public'
       .then((response) => {
         if (!response.ok) {
           throw new Error('No se pudo cargar el archivo JSON.');
@@ -22,7 +21,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        
         <ul>
           {civilizations.map((civilization) => (
             <li key={civilization.name}>
