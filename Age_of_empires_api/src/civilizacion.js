@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-
+import axios from 'axios';
 
 function App() {
   const [civilizations, setCivilizations] = useState([]);
@@ -8,16 +8,8 @@ function App() {
   const [filterType, setFilterType] = useState('');
 
   useEffect(() => {
-    fetch('/Age_of_empires_api/public/civilization.json') 
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('No se pudo cargar el archivo JSON.');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setCivilizations(data.civilization);
-      })
+    axios.get('/api/civilizations')
+      .then(response => setCivilizations(response.data))
       .catch((error) => console.error('Error:', error));
   }, []);
 
@@ -43,33 +35,33 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Buscar civilización"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
-          <button onClick={applyFilters}>Buscar</button>
-        </div>
-        <div className="filter">
-          <select value={filterType} onChange={handleFilterChange}>
-            <option value="">Todos los tipos</option>
-            <option value="Infantry">Infantería</option>
-            <option value="Cavalry">Caballería</option>
-            <option value="monk">Monje</option>
-          </select>
-        </div>
-        <ul>
-          {civilizations.map((civilization) => (
-            <li key={civilization.name}>
-              <h2>{civilization.name}</h2>
-              <p>Expansión: {civilization.expansion}</p>
-              <p>Ventajas: {civilization.civilization_bonus}</p>
-            </li>
-          ))}
-        </ul>
-      </header>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Buscar civilización"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <button onClick={applyFilters}>Buscar</button>
+      </div>
+      <div className="filter">
+        <select value={filterType} onChange={handleFilterChange}>
+          <option value="">Todos los tipos</option>
+          <option value="Infantry">Infantería</option>
+          <option value="Cavalry">Caballería</option>
+          <option value="monk">Monje</option>
+        </select>
+      </div>
+      <ul>
+        {civilizations.map((civilization) => (
+          <li key={civilization.name}>
+            <h2>{civilization.name}</h2>
+            <p>Expansión: {civilization.expansion}</p>
+            <p>Ventajas: {civilization.civilization_bonus}</p>
+          </li>
+        ))}
+      </ul>
+    </header>
     </div>
   );
 }
