@@ -1,67 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import Search from './search';
 
 function App() {
   const [civilizations, setCivilizations] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('');
 
   useEffect(() => {
     axios.get('/api/civilizations')
-      .then(response => setCivilizations(response.data))
+      .then(response => {
+        if (Array.isArray(response.data)) {
+          setCivilizations(response.data);
+        } else {
+          console.error('La respuesta no es un arreglo:', response.data);
+        }
+      })
       .catch((error) => console.error('Error:', error));
   }, []);
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
 
   const handleFilterChange = (event) => {
     setFilterType(event.target.value);
   };
 
-  const applyFilters = () => {
-    const filteredCivilizations = civilizations.filter((civilization) => {
-      if (filterType && civilization.army_type !== filterType) {
-        return false;
-      }
-      return civilization.name.toLowerCase().includes(searchTerm.toLowerCase());
-    });
-
+  const handleSearch = (filteredCivilizations) => {
     setCivilizations(filteredCivilizations);
   };
 
   return (
     <div className="App">
       <header className="App-header">
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Buscar civilización"
-          value={searchTerm}
-          onChange={handleSearchChange}
+        <Search
+          civilizations={civilizations}
+          filterType={filterType}
+          onSearch={handleSearch}
         />
-        <button onClick={applyFilters}>Buscar</button>
-      </div>
-      <div className="filter">
-        <select value={filterType} onChange={handleFilterChange}>
-          <option value="">Todos los tipos</option>
-          <option value="Infantry">Infantería</option>
-          <option value="Cavalry">Caballería</option>
-          <option value="monk">Monje</option>
-        </select>
-      </div>
-      <ul>
-        {civilizations.map((civilization) => (
-          <li key={civilization.name}>
-            <h2>{civilization.name}</h2>
-            <p>Expansión: {civilization.expansion}</p>
-            <p>Ventajas: {civilization.civilization_bonus}</p>
-          </li>
-        ))}
-      </ul>
-    </header>
+        <div className="filter">
+          <select value={filterType} onChange={handleFilterChange}>
+            <option value="">Todos los tipos</option>
+            <option value="Infantry">Infantería</option>
+            <option value="Cavalry">Caballería</option>
+            <option value="monk">Monje</option>
+          </select>
+        </div>
+        <ul>
+          {civilizations.map((civilization) => (
+            <li key={civilization.name}>
+              <h2>{civilization.name}</h2>
+              <p>Expansión: {civilization.expansion}</p>
+              <p>Ventajas: {civilization.civilization_bonus}</p>
+            </li>
+          ))}
+        </ul>
+      </header>
     </div>
   );
 }
