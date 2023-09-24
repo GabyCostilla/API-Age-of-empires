@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import axios from 'axios';
-import Search from './search';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
+import Search from "./search";
 
 function App() {
   const [originalCivilizations, setOriginalCivilizations] = useState([]);
   const [civilizations, setCivilizations] = useState([]);
-  const [filterType, setFilterType] = useState('');
+  const [filterType, setFilterType] = useState("");
 
   useEffect(() => {
-    axios.get('/api/civilizations')
-      .then(response => {
+    axios
+      .get("/api/civilizations")
+      .then((response) => {
         setOriginalCivilizations(response.data);
         setCivilizations(response.data);
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => console.error("Error:", error));
   }, []);
 
   const handleFilterChange = (event) => {
@@ -43,7 +44,7 @@ function App() {
   };
 
   const filterCivilizations = (list, type) => {
-    if (type === '') {
+    if (type === "") {
       setCivilizations(list);
     } else {
       const filteredCivilizations = list.filter((civilization) => {
@@ -65,8 +66,21 @@ function App() {
           <select value={filterType} onChange={handleFilterChange}>
             <option value="">Todos los tipos</option>
             <option value="Infantry">Infantería</option>
+            <option value="Foot Archer">Arquero de a pie</option>
+            <option value="Defensive">Defensivo</option>
+            <option value="Archer">Arquero</option>
             <option value="Cavalry">Caballería</option>
-            <option value="monk">Monje</option>
+            <option value="Camel and naval">Camello y naval</option>
+            <option value="Tower and naval">Torre y naval</option>
+            <option value="Gunpowder and Monk">Pólvora y Monje</option>
+            <option value="Cavalry Archer">Caballería arquera</option>
+            <option value="Calvary and Naval">Caballería y Naval</option>
+            <option value="Monk and Elephant">Monje y Elefante</option>
+            <option value="Siege and Elephant Civilization">
+              Asedio y Civilización de elefantes
+            </option>
+            <option value="Cavalry Infantry">Infantería de caballería</option>
+            <option value="Naval and Gunpowder">Naval y Pólvora</option>
           </select>
         </div>
         <ul>
