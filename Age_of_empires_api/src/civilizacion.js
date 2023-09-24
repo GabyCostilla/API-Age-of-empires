@@ -4,14 +4,14 @@ import axios from 'axios';
 import Search from './search';
 
 function App() {
-  const [originalCivilizations, setOriginalCivilizations] = useState([]); // Mantén la lista original aquí
+  const [originalCivilizations, setOriginalCivilizations] = useState([]);
   const [civilizations, setCivilizations] = useState([]);
   const [filterType, setFilterType] = useState('');
 
   useEffect(() => {
     axios.get('/api/civilizations')
       .then(response => {
-        setOriginalCivilizations(response.data); // Guarda la lista original
+        setOriginalCivilizations(response.data);
         setCivilizations(response.data);
       })
       .catch((error) => console.error('Error:', error));
@@ -19,22 +19,37 @@ function App() {
 
   const handleFilterChange = (event) => {
     setFilterType(event.target.value);
-    filterCivilizations(originalCivilizations, event.target.value); // Filtra la copia con el nuevo valor
+    filterCivilizations(originalCivilizations, event.target.value);
   };
 
   const handleSearch = (filteredCivilizations) => {
     setCivilizations(filteredCivilizations);
   };
 
-  // Función para filtrar la lista de civilizaciones
+  const renderCivilizationProperties = (civilization) => {
+    const properties = [];
+
+    for (const property in civilization) {
+      if (civilization.hasOwnProperty(property)) {
+        properties.push(
+          <p key={property}>
+            <strong>{property}:</strong> {civilization[property]}
+          </p>
+        );
+      }
+    }
+
+    return properties;
+  };
+
   const filterCivilizations = (list, type) => {
     if (type === '') {
-      setCivilizations(list); // Si no hay filtro, muestra la lista completa
+      setCivilizations(list);
     } else {
       const filteredCivilizations = list.filter((civilization) => {
         return civilization.army_type === type;
       });
-      setCivilizations(filteredCivilizations); // Muestra solo las civilizaciones filtradas
+      setCivilizations(filteredCivilizations);
     }
   };
 
@@ -42,7 +57,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Search
-          civilizations={originalCivilizations} // Pasa la lista original
+          civilizations={originalCivilizations}
           filterType={filterType}
           onSearch={handleSearch}
         />
@@ -58,8 +73,7 @@ function App() {
           {civilizations.map((civilization) => (
             <li key={civilization.name}>
               <h2>{civilization.name}</h2>
-              <p>Expansión: {civilization.expansion}</p>
-              <p>Ventajas: {civilization.civilization_bonus}</p>
+              {renderCivilizationProperties(civilization)}
             </li>
           ))}
         </ul>
