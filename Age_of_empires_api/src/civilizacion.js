@@ -87,6 +87,7 @@ function App() {
           {civilizations.map((civilization) => (
             <li key={civilization.name}>
               <h2>{civilization.name}</h2>
+              <img src={civilization.image} alt={civilization.name} />
               {renderCivilizationProperties(civilization)}
             </li>
           ))}
