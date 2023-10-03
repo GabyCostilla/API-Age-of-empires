@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import axios from "axios";
 import Search from "./search";
+import "./App.css"; // Importa el archivo CSS
 
-function App() {
+function Civilizacion() {
   const [originalCivilizations, setOriginalCivilizations] = useState([]);
   const [civilizations, setCivilizations] = useState([]);
   const [filterType, setFilterType] = useState("");
@@ -97,4 +97,4 @@ function App() {
   );
 }
 
-export default App;
+export default Civilizacion;

@@ -1,0 +1,30 @@
+nav {
+    background-color: #333; /* Color de fondo del navbar */
+    color: white; /* Color del texto en el navbar */
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrar elementos horizontalmente */
+  }
+  
+  nav li {
+    margin: 0 10px; /* Espacio entre elementos del navbar */
+  }
+  
+  nav a {
+    text-decoration: none; /* Quitar subrayado de enlaces */
+    color: white; /* Color del texto enlaces */
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: color 0.3s ease; /* Efecto de transición de color al pasar el ratón */
+  }
+  
+  nav a:hover {
+    color: #FF5733; /* Color del texto enlaces al pasar el ratón */
+  }
+  

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './contact.css'; // Importa el archivo CSS personalizado
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -20,20 +22,20 @@ function Contact() {
   const handleSubmit = event => {
     event.preventDefault();
 
-    axios
-      .post('https://my-json-server.typicode.com/fedevirgolini-itr/api_practico5/claims', formData)
-      .then(response => {
-        if (response.status === 201) {
-          window.alert('Mensaje enviado');
-        }
-      })
-      .catch(error => {
-        window.alert('Error al enviar el mensaje');
-      });
+    // Puedes mostrar un mensaje de aprobación aquí
+    toast.success('Mensaje enviado con éxito');
+
+    // Puedes restablecer el formulario después del envío si es necesario
+    setFormData({
+      name: '',
+      mail: '',
+      phone: '',
+      message: ''
+    });
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Contact</h1>
       <form onSubmit={handleSubmit}>
         <label>Nombre *</label>
@@ -72,6 +74,8 @@ function Contact() {
         <br />
         <button type="submit">Enviar</button>
       </form>
+      {/* Agrega el ToastContainer al final del componente */}
+      <ToastContainer />
     </div>
   );
 }
