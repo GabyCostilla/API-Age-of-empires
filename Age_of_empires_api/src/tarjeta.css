@@ -1,0 +1,49 @@
+/* TarjetaCivilizacion.css */
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h2 {
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .card img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+  }
+  
+  .card p {
+    margin: 5px 0;
+    text-align: center;
+  }
+  
+  /* Estilos para las propiedades */
+  .card .property {
+    font-weight: bold;
+  }
+  
+  /* Estilo para la propiedad "image" */
+  .card .property-image {
+    max-width: 200px;
+  }
+  
+  /* Estilo para enlaces */
+  .card a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .card a:hover {
+    text-decoration: underline;
+  }
+  

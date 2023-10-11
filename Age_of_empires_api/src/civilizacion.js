@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Search from "./search";
+import TarjetaCivilizacion from "./tarjetaCivilizacion"; // Importa la nueva componente
 import "./App.css"; // Importa el archivo CSS
 
 function Civilizacion() {
@@ -25,22 +26,6 @@ function Civilizacion() {
 
   const handleSearch = (filteredCivilizations) => {
     setCivilizations(filteredCivilizations);
-  };
-
-  const renderCivilizationProperties = (civilization) => {
-    const properties = [];
-
-    for (const property in civilization) {
-      if (civilization.hasOwnProperty(property)) {
-        properties.push(
-          <p key={property}>
-            <strong>{property}:</strong> {civilization[property]}
-          </p>
-        );
-      }
-    }
-
-    return properties;
   };
 
   const filterCivilizations = (list, type) => {
@@ -83,15 +68,11 @@ function Civilizacion() {
             <option value="Naval and Gunpowder">Naval y Pólvora</option>
           </select>
         </div>
-        <ul>
+        <div className="civilization-cards">
           {civilizations.map((civilization) => (
-            <li key={civilization.name}>
-              <h2>{civilization.name}</h2>
-              <img src={civilization.image} alt={civilization.name} />
-              {renderCivilizationProperties(civilization)}
-            </li>
+            <TarjetaCivilizacion civilization={civilization} key={civilization.name} />
           ))}
-        </ul>
+        </div>
       </header>
     </div>
   );
