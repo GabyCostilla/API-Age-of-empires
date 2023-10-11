@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function Search({ civilizations, onSearch }) {
-  const [selectedCivilization, setSelectedCivilization] = useState('');
-
+function Search({
+  civilizations,
+  filterType,
+  onSearch,
+  selectedCivilization,
+  onSelectedCivilizationChange,
+  onSearchClick,
+}) {
   const handleCivilizationChange = (event) => {
-    setSelectedCivilization(event.target.value);
-  };
-
-  const handleSearchClick = () => {
-    const filteredCivilizations = civilizations.filter((civilization) => {
-      return civilization.name === selectedCivilization;
-    });
-
-    onSearch(filteredCivilizations);
+    onSelectedCivilizationChange(event.target.value);
   };
 
   return (
@@ -25,7 +22,7 @@ function Search({ civilizations, onSearch }) {
           </option>
         ))}
       </select>
-      <button onClick={handleSearchClick}>Mostrar detalles</button>
+      <button onClick={onSearchClick}>Mostrar detalles</button>
     </div>
   );
 }
